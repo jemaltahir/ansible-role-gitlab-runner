@@ -1,9 +1,10 @@
 ---
-name: (Debian) Get Gitlab Runner repository installation script
-ansible.builtin.get_url:
-  url: "https://packages.gitlab.com/install/repositories/runner/{{ gitlab_runner_package_name }}/script.deb.sh"
-  dest: "/tmp/{{ gitlab_runner_package_name }}.script.deb.sh"
-  mode: 744
+- name: (Debian) Get Gitlab Runner repository installation script
+  ansible.builtin.get_url:
+    url: "https://packages.gitlab.com/install/repositories/runner/{{ gitlab_runner_package_name }}/script.deb.sh"
+    dest: "/tmp/{{ gitlab_runner_package_name }}.script.deb.sh"
+    mode: 744
+  become: true
 
 - name: (Debian) Install Gitlab Runner repository
   ansible.builtin.command: 

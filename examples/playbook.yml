@@ -1,6 +1,6 @@
 ---
-- name: Thainm5's Gitlab playbook
-  hosts: gitlab_server
+- name: Thainm5's Gitlab Runner playbook
+  hosts: gitlab_runner_server
   
   pre_tasks:
     - name: Update apt cache.
@@ -10,4 +10,4 @@
       become: yes
 
   roles:
-    - gitlab
+    - gitlab-runner

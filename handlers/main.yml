@@ -1,14 +1,2 @@
 ---
-- name: Stop gitlab
-  ansible.builtin.command:
-    cmd: gitlab-ctl stop
-  become: yes
-
-- name: Reconfigure gitlab
-  command: gitlab-ctl reconfigure
-  become: yes
-
-- name: Start gitlab
-  ansible.builtin.command:
-    cmd: gitlab-ctl start
-  become: yes
+# Handlers for Gitlab Runner role.

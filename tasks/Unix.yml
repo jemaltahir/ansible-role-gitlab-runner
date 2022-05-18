@@ -2,29 +2,19 @@
   import_tasks: install-debian.yml
   when: ansible_os_family == 'Debian'
 
-- name: (Unix) List configured runners
-  command: "{{ gitlab_runner_executable }} list"
-  register: configured_runners
-  changed_when: False
-  check_mode: no
-  become: yes
-
-- name: (Unix) Check runner is registered
-  command: "{{ gitlab_runner_executable }} verify"
-  register: verified_runners
-  ignore_errors: True
-  changed_when: False
-  check_mode: no
-  become: yes
-
 - name: (Unix) Register GitLab Runner
-  # Check this one
-  include_tasks: register-runner.yml 
-  # Check gitlab_runner.token
-  when: gitlab_runner.token is defined or gitlab_runner_registration_token | string | length > 0  # Ensure value is set
-  # Check gitlab_runner_runners
-  loop: "{{ gitlab_runner_runners }}"
-  # Check loop_control
-  loop_control:
-    index_var: gitlab_runner_index
-    loop_var: gitlab_runner
+  ansible.builtin.command: 
+    cmd: |
+      gitlab-runner register \
+      --non-interactive \
+      --url '{{ gitlab_runner_coordinator_url }}' \
+      --registration-token '{{ gitlab_runner_registration_token }}' \
+      --executor '{{ gitlab_runner_executor }}' \
+      --docker-image '{{ gitlab_runner_init_docker_image }}:{{ gitlab_runner_init_docker_image_version }}' \
+      --description '{{ gitlab_runner_description }}' \
+      --tag-list '{{ gitlab_runner_tag_list }}' \
+      --run-untagged='{{ gitlab_runner_run_untagged }}' \
+      --locked='{{ gitlab_runner_locked }}' \
+      --access-level='{{ gitlab_runner_protected }}'
+  when: gitlab_runner_registration_token | string | length > 0
+  become: true

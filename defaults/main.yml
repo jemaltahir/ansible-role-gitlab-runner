@@ -1,11 +1,29 @@
 ---
 arch: "amd64"
-# For Gitlab Runner version >= 10.0:
-gitlab_runner_package_name: "gitlab-runner"
-
 # For Gitlab Runner version < 10.0:
 # gitlab_runner_package_name: "gitlab-ci-multi-runner"
 
-# gitlab_runner_package_version for specific version on Debian.
+# For Gitlab Runner version >= 10.0:
+gitlab_runner_package_name: 'gitlab-runner'
 
-gitlab_runner_executable: "{{ gitlab_runner_package_name }}"
+# GitLab server URL for registration
+gitlab_runner_coordinator_url: 'https://git.devnull.works'
+
+# GitLab registration token
+gitlab_runner_registration_token: '1ka9TJgn9BxawJJU-AkK'
+
+# Init runner configuration
+gitlab_runner_executor: 'docker'
+gitlab_runner_init_docker_image: 'alpine'
+gitlab_runner_init_docker_image_version: 'latest'
+gitlab_runner_description: 'docker-runner'
+gitlab_runner_tag_list: 'docker, aws'
+
+# When a runner is locked, it cannot be assigned to other projects
+gitlab_runner_locked: false
+
+# Indicates whether this runner can pick jobs without tags.
+gitlab_runner_run_untagged: true
+
+# Indicates whether this runner should only pick jobs from protected branches.
+gitlab_runner_protected: false

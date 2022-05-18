@@ -1,29 +1,4 @@
 ---
-# - name: Download Gitlab Runner deb package
-#   ansible.builtin.command:
-#     cmd: "cd /tmp && curl -LJO https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_{{ arch }}.deb"
-#   become: yes
-
-# - name: Install Gitlab Runner deb package
-#   ansible.builtin.apt:
-#     deb: "/tmp/gitlab-runner_{{ arch }}.deb"
-#   become: yes
-
-# - name: Load platform-specific variables
-#   include_vars: "{{ lookup('first_found', possible_files) }}"
-#   vars:
-#     possible_files:
-#       files:
-#         - '{{ ansible_distribution }}.yml'
-#         - '{{ ansible_os_family }}.yml'
-#         - 'default.yml'
-#       paths:
-#         - 'vars'
-
-- name: Print previous task results
-  ansible.builtin.debug:
-    var: ansible_os_family
-
 - name: Install Gitlab Runner (Unix)
   import_tasks: Unix.yml
   when: ansible_os_family != 'Windows'
