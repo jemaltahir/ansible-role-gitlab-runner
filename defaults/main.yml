@@ -7,3 +7,5 @@ gitlab_runner_package_name: "gitlab-runner"
 # gitlab_runner_package_name: "gitlab-ci-multi-runner"
 
 # gitlab_runner_package_version for specific version on Debian.
+
+gitlab_runner_executable: "{{ gitlab_runner_package_name }}"
