@@ -1,0 +1,25 @@
+### NOTE: This template file is official, but with the minimum configurations.
+# For references, please check 'gitlab.rb.template.j2' and 'gitlab.rb' file, which is the default configuration file for Gitlab.
+
+# Gitlab PostgreSQL
+postgresql['dir'] = '{{ postgres_data_dir }}'
+
+# Git repository data
+git_data_dirs({ "default" => { "path" => '{{ gitlab_git_data_directory }}' } })
+
+# SSL configuration
+letsencrypt['enable'] = true
+external_url '{{ gitlab_external_url }}'
+
+# Backup and restore
+gitlab_rails['backup_path'] = '{{ gitlab_backup_path }}'
+
+# Must hardcoded true/false because of Ansible parsing format:
+# Ansible parses true/false to True/False.
+alertmanager['enable'] = false
+grafana['enable'] = false
+prometheus['enable'] = false 
+gitlab_exporter['enable'] = false
+node_exporter['enable'] = false
+postgres_exporter['enable'] = false
+redis_exporter['enable'] = false

@@ -1,0 +1,9 @@
+---
+arch: "amd64"
+# For Gitlab Runner version >= 10.0:
+gitlab_runner_package_name: "gitlab-runner"
+
+# For Gitlab Runner version < 10.0:
+# gitlab_runner_package_name: "gitlab-ci-multi-runner"
+
+# gitlab_runner_package_version for specific version on Debian.
