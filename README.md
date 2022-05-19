@@ -1,6 +1,4 @@
-# Ansible Role: GitLab
-
-<!-- [![CI](https://github.com/geerlingguy/ansible-role-gitlab/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-gitlab/actions?query=workflow%3ACI) -->
+# Ansible Role: GitLab Runner
 
 ## This role is currently under development, please use with your own risks!
 

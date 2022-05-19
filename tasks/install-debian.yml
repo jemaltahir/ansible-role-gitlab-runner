@@ -9,7 +9,7 @@
 - name: (Debian) Install Gitlab Runner repository
   ansible.builtin.command: 
     creates: "/etc/apt/sources.list.d/runner_{{ gitlab_runner_package_name }}.list"
-    cmd: "bash /tmp/gitlab_runner_package_name.script.deb.sh"
+    cmd: "bash /tmp/{{ gitlab_runner_package_name }}.script.deb.sh"
   become: true
 
 - name: (Debian) Update Gitlab Runner package name with specific version
